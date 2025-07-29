@@ -44,3 +44,31 @@ spec:
   - args:
     - --kubelet-insecure-tls  # 追加する行
 ```
+
+## kubectl topコマンドの使用例
+メトリクスサーバーが正常に動作している場合、以下のコマンドでノードとポッドのリソース使用量を確認できます。
+```bash
+# ノードのリソース使用量を表示
+kubectl top nodes
+
+# ポッドのリソース使用量を表示
+kubectl top pods
+
+# クラスター内の全てのPodのCPU使用率とメモリ使用量を表示
+$ kubectl top pod --all-namespaces --containers
+
+NAMESPACE            POD                                          NAME                      CPU(cores)   MEMORY(bytes)
+default              myapp-0                                      nginx-container           0m           1Mi
+default              myapp-1                                      nginx-container           0m           1Mi
+default              myapp-2                                      nginx-container           0m           1Mi
+kube-system          coredns-674b8bbfcf-fmjjs                     coredns                   6m           13Mi
+kube-system          coredns-674b8bbfcf-j6k7j                     coredns                   5m           13Mi
+kube-system          etcd-kind-control-plane                      etcd                      41m          44Mi
+kube-system          kindnet-vpthw                                kindnet-cni               2m           9Mi
+kube-system          kube-apiserver-kind-control-plane            kube-apiserver            80m          221Mi
+kube-system          kube-controller-manager-kind-control-plane   kube-controller-manager   29m          45Mi
+kube-system          kube-proxy-s5dcm                             kube-proxy                2m           14Mi
+kube-system          kube-scheduler-kind-control-plane            kube-scheduler            19m          22Mi
+kube-system          metrics-server-56fb9549f4-cnph4              metrics-server            7m           17Mi
+local-path-storage   local-path-provisioner-7dc846544d-cnb2n      local-path-provisioner    1m           7Mi
+``` 
